@@ -1,0 +1,25 @@
+# Общие исключения
+.git/
+.gitignore
+*.md
+*.txt
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+
+**/node_modules/
+**/.cache/
+**/coverage/
+**/dist/
+**/.vite/
+
+**/bin/
+**/obj/
+**/publish/
+**/build/
+**/.vs/
+**/*.csproj.user
