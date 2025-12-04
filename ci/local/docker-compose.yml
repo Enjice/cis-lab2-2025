@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ../../backend  
+      dockerfile: Dockerfile
+      args:
+        SDK_VERSION: ${BACKEND_SDK_VERSION:-8.0}
+        ASPNET_VERSION: ${BACKEND_ASPNET_VERSION:-8.0}
+    container_name: lab2-backend
+    
+    expose:
+      - "8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+
+  frontend:
+    build:
+      context: ../../frontend  
+      dockerfile: Dockerfile
+      args:
+        NODE_VERSION: ${FRONTEND_NODE_VERSION:-20}
+        NGINX_VERSION: ${FRONTEND_NGINX_VERSION:-alpine}
+    container_name: lab2-frontend
+    ports:
+      - "8080:80"  # Хост:8080 → Контейнер:80
+    depends_on:
+      - backend
